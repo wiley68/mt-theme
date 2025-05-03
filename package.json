@@ -1,0 +1,25 @@
+{
+	"name": "mt-header",
+	"version": "0.1.0",
+	"description": "Avalon Maxtrade Default Theme",
+	"author": "Avalon",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php --blocks-manifest",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"tailwindcss": "npx @tailwindcss/cli -i ./src/assets/css/theme.css -o ./assets/css/theme.css --minify",
+		"start": "wp-scripts start --webpack-copy-php --blocks-manifest"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.15.0"
+	},
+	"dependencies": {
+		"@tailwindcss/cli": "^4.1.5",
+		"tailwindcss": "^4.1.5"
+	}
+}
