@@ -17,13 +17,13 @@
 			</svg>
 		</a>
 		<a href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name')); ?>" class="flex items-center">
-			<h1 class="text-2xl font-medium text-amber-300"><?php esc_html_e('АВАЛОН', 'mt-theme'); ?></h1>
+			<h1 class="text-2xl font-medium text-amber-400 hover:text-amber-300"><?php esc_html_e('АВАЛОН', 'mt-theme'); ?></h1>
 		</a>
-		<div class="flex flex-1 items-center">
+		<div class="flex flex-1 items-center mx-6">
 			<div class="flex-1">
-				<div class="flex rounded-md bg-white outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+				<div class="flex rounded-md bg-white outline-1 -outline-offset-1 outline-white has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-amber-400">
 					<div class="grid shrink-0 grid-cols-1 focus-within:relative">
-						<select aria-label="Country" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pl-3 pr-7 text-base text-gray-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+						<select class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pl-3 pr-7 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-400 sm:text-sm/6">
 							<option>Категория 1</option>
 							<option>Категория 2</option>
 							<option>Категория 3</option>
@@ -33,16 +33,16 @@
 						</svg>
 					</div>
 					<input type="text" class="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6" placeholder="<?php esc_attr_e('Search for products', 'mt-theme'); ?>">
-					<button type="button" class="flex shrink-0 items-center gap-x-1.5 rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 hover:bg-gray-50 focus:relative focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600">
-						<svg class="-ml-0.5 size-4 text-gray-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
-							<path fill-rule="evenodd" d="M2 2.75A.75.75 0 0 1 2.75 2h9.5a.75.75 0 0 1 0 1.5h-9.5A.75.75 0 0 1 2 2.75ZM2 6.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 0 1.5h-5.5A.75.75 0 0 1 2 6.25Zm0 3.5A.75.75 0 0 1 2.75 9h3.5a.75.75 0 0 1 0 1.5h-3.5A.75.75 0 0 1 2 9.75ZM9.22 9.53a.75.75 0 0 1 0-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1-1.06 1.06l-.97-.97v5.69a.75.75 0 0 1-1.5 0V8.56l-.97.97a.75.75 0 0 1-1.06 0Z" clip-rule="evenodd" />
+					<button type="button" class="flex shrink-0 items-center gap-x-1.5 rounded-r-md cursor-pointer bg-amber-600 px-3 py-2 text-sm font-semibold text-white outline-1 -outline-offset-1 outline-amber-300 hover:bg-amber-500 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-amber-300">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="-ml-0.5 size-4 text-white" fill="currentColor" aria-hidden="true" data-slot="icon">
+							<path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
 						</svg>
-						Sort
+						<?php esc_html_e('Search', 'mt-theme'); ?>
 					</button>
 				</div>
 			</div>
 		</div>
-		<button id="mt-theme-toggle" aria-label="Превключи режим" style="cursor: pointer;">
+		<button id="mt-theme-toggle" aria-label="Превключи режим" class="cursor-pointer ml-2">
 			🌓 Превключи режим
 		</button>
 	</div>
