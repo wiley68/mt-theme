@@ -29,7 +29,7 @@ add_action('wp_enqueue_scripts', 'mt_theme_enqueue_scripts');
 function mt_theme_mt_header_block_init()
 {
 	register_block_type(__DIR__ . "/build/mt-header");
-	// register_block_type(__DIR__ . "/build/mt-footer");
+	register_block_type(__DIR__ . "/build/mt-footer");
 }
 add_action('init', 'mt_theme_mt_header_block_init');
 

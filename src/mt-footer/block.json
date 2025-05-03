@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "mt-theme/mt-header",
+	"name": "mt-theme/mt-footer",
 	"version": "0.1.0",
-	"title": "Mt Header",
-	"category": "widgets",
+	"title": "Mt Footer",
+	"category": "mt-theme",
 	"icon": "html",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Mt Theme footer block.",
 	"example": {},
 	"supports": {
 		"html": false
