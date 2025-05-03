@@ -23,3 +23,28 @@
 /* eslint-disable no-console */
 console.log("Mt Header");
 /* eslint-enable no-console */
+
+document.addEventListener("DOMContentLoaded", () => {
+	const body = document.body;
+	const toggleBtn = document.querySelector("#mt-theme-toggle");
+
+	// 1. Прочитане от localStorage
+	const savedMode = localStorage.getItem("mt-theme-mode");
+	if (savedMode === "dark" || savedMode === "light") {
+		body.classList.remove("body--light", "body--dark");
+		body.classList.add(`body--${savedMode}`);
+	}
+
+	// 2. Превключване при клик
+	if (toggleBtn) {
+		toggleBtn.addEventListener("click", () => {
+			const isDark = body.classList.contains("body--dark");
+			const newMode = isDark ? "light" : "dark";
+
+			body.classList.remove("body--light", "body--dark");
+			body.classList.add(`body--${newMode}`);
+
+			localStorage.setItem("mt-theme-mode", newMode);
+		});
+	}
+});

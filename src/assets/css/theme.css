@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
+body.body--light {
+    scrollbar-width: thin;
+    scrollbar-color: #e0e0e0 #f7f7f7;
+}
