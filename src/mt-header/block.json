@@ -4,7 +4,7 @@
 	"name": "mt-theme/mt-header",
 	"version": "0.1.0",
 	"title": "Mt Header",
-	"category": "widgets",
+	"category": "mt-theme",
 	"icon": "html",
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
