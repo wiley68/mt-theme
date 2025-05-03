@@ -32,7 +32,7 @@
 							<path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 						</svg>
 					</div>
-					<input type="text" class="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6" placeholder="<?php esc_attr_e('Search for products', 'mt-theme'); ?>">
+					<input type="text" class="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline-0 sm:text-sm/6" placeholder="<?php esc_attr_e('Search for products', 'mt-theme'); ?>">
 					<button type="button" class="flex shrink-0 items-center gap-x-1.5 rounded-r-md cursor-pointer bg-amber-600 px-3 py-2 text-sm font-semibold text-white outline-1 -outline-offset-1 outline-amber-300 hover:bg-amber-500 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-amber-300">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="-ml-0.5 size-4 text-white" fill="currentColor" aria-hidden="true" data-slot="icon">
 							<path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
@@ -42,8 +42,20 @@
 				</div>
 			</div>
 		</div>
-		<button id="mt-theme-toggle" aria-label="Превключи режим" class="cursor-pointer ml-2">
-			🌓 Превключи режим
+		<button id="mt-theme-toggle" type="button" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-cyan-800 bg-cyan-800 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2" role="switch" aria-checked="false">
+			<span class="sr-only"><?php esc_html_e('Toggle Dark mode', 'mt-theme'); ?></span>
+			<span id="mt-theme-toggle-circle" class="pointer-events-none relative inline-block size-5 translate-x-0 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out">
+				<span id="mt-theme-toggle-dark" class="absolute inset-0 flex size-full items-center justify-center opacity-100 transition-opacity duration-200 ease-in" aria-hidden="true">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-3 text-gray-400" fill="none">
+						<path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3.55 19.09L4.96 20.5L6.76 18.71L5.34 17.29M12 6C8.69 6 6 8.69 6 12S8.69 18 12 18 18 15.31 18 12C18 8.68 15.31 6 12 6M20 13H23V11H20M17.24 18.71L19.04 20.5L20.45 19.09L18.66 17.29M20.45 5L19.04 3.6L17.24 5.39L18.66 6.81M13 1H11V4H13M6.76 5.39L4.96 3.6L3.55 5L5.34 6.81L6.76 5.39M1 13H4V11H1M13 20H11V23H13" />
+					</svg>
+				</span>
+				<span id="mt-theme-toggle-light" class="absolute inset-0 flex size-full items-center justify-center opacity-0 transition-opacity duration-100 ease-out" aria-hidden="true">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-3 text-gray-600" fill="currentColor">
+						<path d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />
+					</svg>
+				</span>
+			</span>
 		</button>
 	</div>
 </div>

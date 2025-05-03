@@ -27,15 +27,44 @@ console.log("Mt Header");
 document.addEventListener("DOMContentLoaded", () => {
 	const body = document.body;
 	const toggleBtn = document.querySelector("#mt-theme-toggle");
+	const toggleBtnCircle = document.querySelector("#mt-theme-toggle-circle");
+	const toggleBtnDark = document.querySelector("#mt-theme-toggle-dark");
+	const toggleBtnLight = document.querySelector("#mt-theme-toggle-light");
 
-	// 1. Прочитане от localStorage
+	// Check for reserved mode
 	const savedMode = localStorage.getItem("mt-theme-mode");
 	if (savedMode === "dark" || savedMode === "light") {
 		body.classList.remove("body--light", "body--dark");
 		body.classList.add(`body--${savedMode}`);
+		toggleBtnCircle.classList.remove("translate-x-0", "translate-x-5");
+		toggleBtnDark.classList.remove(
+			"opacity-0",
+			"duration-100",
+			"ease-out",
+			"opacity-100",
+			"duration-200",
+			"ease-in",
+		);
+		toggleBtnLight.classList.remove(
+			"opacity-100",
+			"duration-200",
+			"ease-in",
+			"opacity-0",
+			"duration-100",
+			"ease-out",
+		);
+		if (savedMode === "dark") {
+			toggleBtnCircle.classList.add("translate-x-5");
+			toggleBtnDark.classList.add("opacity-0", "duration-100", "ease-out");
+			toggleBtnLight.classList.add("opacity-100", "duration-200", "ease-in");
+		} else {
+			toggleBtnCircle.classList.add("translate-x-0");
+			toggleBtnDark.classList.add("opacity-100", "duration-200", "ease-in");
+			toggleBtnLight.classList.add("opacity-0", "duration-100", "ease-out");
+		}
 	}
 
-	// 2. Превключване при клик
+	// Toggle on click
 	if (toggleBtn) {
 		toggleBtn.addEventListener("click", () => {
 			const isDark = body.classList.contains("body--dark");
@@ -43,6 +72,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			body.classList.remove("body--light", "body--dark");
 			body.classList.add(`body--${newMode}`);
+			toggleBtnCircle.classList.remove("translate-x-0", "translate-x-5");
+			toggleBtnDark.classList.remove(
+				"opacity-0",
+				"duration-100",
+				"ease-out",
+				"opacity-100",
+				"duration-200",
+				"ease-in",
+			);
+			toggleBtnLight.classList.remove(
+				"opacity-100",
+				"duration-200",
+				"ease-in",
+				"opacity-0",
+				"duration-100",
+				"ease-out",
+			);
+			if (newMode === "dark") {
+				toggleBtnCircle.classList.add("translate-x-5");
+				toggleBtnDark.classList.add("opacity-0", "duration-100", "ease-out");
+				toggleBtnLight.classList.add("opacity-100", "duration-200", "ease-in");
+			} else {
+				toggleBtnCircle.classList.add("translate-x-0");
+				toggleBtnDark.classList.add("opacity-100", "duration-200", "ease-in");
+				toggleBtnLight.classList.add("opacity-0", "duration-100", "ease-out");
+			}
 
 			localStorage.setItem("mt-theme-mode", newMode);
 		});
