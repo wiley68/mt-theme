@@ -64,5 +64,52 @@ $logo_url = $attributes['logoUrl'] ?? '';
 				</span>
 			</span>
 		</button>
+		<div class="relative inline-block text-left">
+			<div>
+				<button id="mt-theme-user-button" type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-white hover:ring-amber-400 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+					<?php if (is_user_logged_in()) { ?>
+						<?php $current_user = wp_get_current_user(); ?>
+						<p><?php esc_html_e('Hello', 'mt-theme'); ?>,&nbsp;<?php echo esc_html($current_user->display_name); ?></p>
+					<?php } else { ?>
+						<p><?php esc_html_e('Hello, Guest!', 'mt-theme'); ?></p>
+					<?php } ?>
+					<svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+						<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+					</svg>
+				</button>
+			</div>
+			<div id="mt-theme-user" class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none opacity-0 scale-95" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+				<?php if (is_user_logged_in()) { ?>
+					<div class="py-1" role="none">
+						<div class="px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+							<p class="text-lg font-medium" role="none"><?php esc_html_e('Account settings', 'mt-theme'); ?></p>
+							<p class="text-xs text-gray-600" role="none"><?php esc_html_e('View your orders, change your address details, etc.', 'mt-theme'); ?></p>
+						</div>
+					</div>
+					<div class="py-1" role="none">
+						<div class="px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+							<p class="text-lg font-medium" role="none"><?php esc_html_e('Contact us', 'mt-theme'); ?></p>
+							<p class="text-xs text-gray-600" role="none"><?php esc_html_e('Come play with us. We will answer all your questions.', 'mt-theme'); ?></p>
+						</div>
+					</div>
+					<div class="py-1" role="none">
+						<div class="flex items-center space-x-2 px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5 text-red-600" fill="currentColor">
+								<path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" />
+							</svg>
+							<p class="text-lg font-medium"><?php esc_html_e('Exit', 'mt-theme'); ?></p>
+						</div>
+					</div>
+			</div>
+		<?php } else { ?>
+			<div class="py-1" role="none">
+				<div class="px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+					<p class="text-lg" role="none"><?php esc_html_e('Sign in', 'mt-theme'); ?></p>
+					<p class="truncate text-sm font-medium text-gray-900" role="none"><?php esc_html_e('Sign in...', 'mt-theme'); ?></p>
+				</div>
+			</div>
+		<?php } ?>
+		</div>
 	</div>
+</div>
 </div>

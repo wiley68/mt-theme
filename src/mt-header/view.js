@@ -26,11 +26,12 @@ console.log("Mt Header");
 
 document.addEventListener("DOMContentLoaded", () => {
 	const body = document.body;
+
+	// Theme toggle
 	const toggleBtn = document.querySelector("#mt-theme-toggle");
 	const toggleBtnCircle = document.querySelector("#mt-theme-toggle-circle");
 	const toggleBtnDark = document.querySelector("#mt-theme-toggle-dark");
 	const toggleBtnLight = document.querySelector("#mt-theme-toggle-light");
-
 	// Check for reserved mode
 	const savedMode = localStorage.getItem("mt-theme-mode");
 	if (savedMode === "dark" || savedMode === "light") {
@@ -63,8 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			toggleBtnLight.classList.add("opacity-0", "duration-100", "ease-out");
 		}
 	}
-
-	// Toggle on click
+	// Toggle on click The button
 	if (toggleBtn) {
 		toggleBtn.addEventListener("click", () => {
 			const isDark = body.classList.contains("body--dark");
@@ -100,6 +100,48 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 
 			localStorage.setItem("mt-theme-mode", newMode);
+		});
+	}
+
+	// Account menu
+	const userDropDownButton = document.querySelector("#mt-theme-user-button");
+	const userDropDown = document.querySelector("#mt-theme-user");
+	// Toggle on click Account menu
+	if (userDropDownButton) {
+		userDropDownButton.addEventListener("click", () => {
+			if (
+				userDropDown.classList.contains("opacity-0") &&
+				userDropDown.classList.contains("scale-95")
+			) {
+				userDropDown.classList.remove(
+					"opacity-0",
+					"scale-95",
+					"ease-in",
+					"duration-75",
+				);
+				userDropDown.classList.add(
+					"opacity-100",
+					"scale-100",
+					"ease-out",
+					"duration-100",
+				);
+			} else if (
+				userDropDown.classList.contains("opacity-100") &&
+				userDropDown.classList.contains("scale-100")
+			) {
+				userDropDown.classList.remove(
+					"opacity-100",
+					"scale-100",
+					"ease-out",
+					"duration-100",
+				);
+				userDropDown.classList.add(
+					"opacity-0",
+					"scale-95",
+					"ease-in",
+					"duration-75",
+				);
+			}
 		});
 	}
 });
