@@ -144,9 +144,53 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	}
-	// Close menu on click outside
+
+	// Language menu
+	const languageButton = document.querySelector("#mt-theme-language-button");
+	const language = document.querySelector("#mt-theme-language");
+	// Toggle on click Language menu
+	if (languageButton) {
+		languageButton.addEventListener("click", () => {
+			if (
+				language.classList.contains("opacity-0") &&
+				language.classList.contains("scale-95")
+			) {
+				language.classList.remove(
+					"opacity-0",
+					"scale-95",
+					"ease-in",
+					"duration-75",
+				);
+				language.classList.add(
+					"opacity-100",
+					"scale-100",
+					"ease-out",
+					"duration-100",
+				);
+			} else if (
+				language.classList.contains("opacity-100") &&
+				language.classList.contains("scale-100")
+			) {
+				language.classList.remove(
+					"opacity-100",
+					"scale-100",
+					"ease-out",
+					"duration-100",
+				);
+				language.classList.add(
+					"opacity-0",
+					"scale-95",
+					"ease-in",
+					"duration-75",
+				);
+			}
+		});
+	}
+
+	// Close menus on click outside
 	document.addEventListener("click", (event) => {
-		if (!userDropDown || !userDropDownButton) return;
+		if (!userDropDown || !userDropDownButton || !languageButton || !language)
+			return;
 
 		if (
 			!userDropDown.contains(event.target) &&
@@ -163,6 +207,28 @@ document.addEventListener("DOMContentLoaded", () => {
 					"duration-100",
 				);
 				userDropDown.classList.add(
+					"opacity-0",
+					"scale-95",
+					"ease-in",
+					"duration-75",
+				);
+			}
+		}
+		if (
+			!language.contains(event.target) &&
+			!languageButton.contains(event.target)
+		) {
+			if (
+				language.classList.contains("opacity-100") &&
+				language.classList.contains("scale-100")
+			) {
+				language.classList.remove(
+					"opacity-100",
+					"scale-100",
+					"ease-out",
+					"duration-100",
+				);
+				language.classList.add(
 					"opacity-0",
 					"scale-95",
 					"ease-in",
