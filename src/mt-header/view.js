@@ -144,4 +144,31 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	}
+	// Close menu on click outside
+	document.addEventListener("click", (event) => {
+		if (!userDropDown || !userDropDownButton) return;
+
+		if (
+			!userDropDown.contains(event.target) &&
+			!userDropDownButton.contains(event.target)
+		) {
+			if (
+				userDropDown.classList.contains("opacity-100") &&
+				userDropDown.classList.contains("scale-100")
+			) {
+				userDropDown.classList.remove(
+					"opacity-100",
+					"scale-100",
+					"ease-out",
+					"duration-100",
+				);
+				userDropDown.classList.add(
+					"opacity-0",
+					"scale-95",
+					"ease-in",
+					"duration-75",
+				);
+			}
+		}
+	});
 });

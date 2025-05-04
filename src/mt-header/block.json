@@ -6,7 +6,7 @@
 	"title": "Mt Header",
 	"category": "mt-theme",
 	"icon": "html",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Mt Theme header block.",
 	"example": {},
 	"supports": {
 		"html": false

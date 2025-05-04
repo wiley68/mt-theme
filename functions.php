@@ -13,6 +13,15 @@ if (! defined(constant_name: 'ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
+function mt_theme_load_textdomain()
+{
+	$locale = apply_filters('plugin_locale', determine_locale(), 'mt-theme');
+	$mofile = "mt-theme-{$locale}.mo";
+	load_textdomain('mt-theme', get_template_directory_uri() . '/languages/' . $mofile);
+}
+
+add_action('init', 'mt_theme_load_textdomain');
+
 function mt_theme_enqueue_scripts()
 {
 	wp_enqueue_style(
