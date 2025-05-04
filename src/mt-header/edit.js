@@ -3,7 +3,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from '@wordpress/i18n';
+import { __ } from "@wordpress/i18n";
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -11,7 +11,11 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	MediaUpload,
+	MediaUploadCheck,
+} from "@wordpress/block-editor";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -19,7 +23,9 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.scss';
+import "./editor.scss";
+
+import { Button } from "@wordpress/components";
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -29,6 +35,53 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
-	return <p { ...useBlockProps() }>{ __( 'Mt Header', 'mt-theme' ) }</p>;
+export default function Edit({ attributes, setAttributes }) {
+	const { logoUrl } = attributes;
+
+	const onSelectImage = (media) => {
+		setAttributes({ logoUrl: media.url });
+	};
+
+	const removeImage = () => {
+		setAttributes({ logoUrl: "" });
+	};
+
+	return (
+		<div {...useBlockProps()}>
+			<p>{__("Mt Header", "mt-theme")}</p>
+
+			<MediaUploadCheck>
+				<MediaUpload
+					onSelect={onSelectImage}
+					allowedTypes={["image"]}
+					value={logoUrl}
+					render={({ open }) => (
+						<Button onClick={open} isSecondary>
+							{logoUrl
+								? __("Change logo", "mt-theme")
+								: __("Select logo", "mt-theme")}
+						</Button>
+					)}
+				/>
+			</MediaUploadCheck>
+
+			{logoUrl && (
+				<div style={{ marginTop: "10px" }}>
+					<img
+						src={logoUrl}
+						alt={__("Selected logo", "mt-theme")}
+						style={{ maxWidth: "100px" }}
+					/>
+					<Button
+						onClick={removeImage}
+						isLink
+						isDestructive
+						style={{ display: "block", marginTop: "5px" }}
+					>
+						{__("Remove logo", "mt-theme")}
+					</Button>
+				</div>
+			)}
+		</div>
+	);
 }

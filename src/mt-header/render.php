@@ -4,6 +4,9 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 ?>
+<?php
+$logo_url = $attributes['logoUrl'] ?? '';
+?>
 <div class="flex flex-col justify-center bg-cyan-600 text-white px-2 py-1 shadow-lg">
 	<div class="flex flex-wrap items-center space-x-3">
 		<button type="button" class="rounded-full p-1 text-white shadow-sm border border-gray-400 hover:border-gray-300 cursor-pointer">
@@ -12,12 +15,16 @@
 			</svg>
 		</button>
 		<a href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name')); ?>" class="flex items-center">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-10 text-amber-400 hover:text-amber-300" fill="currentColor" aria-hidden="true" data-slot="icon">
-				<path d="M12.89,3L14.85,3.4L11.11,21L9.15,20.6L12.89,3M19.59,12L16,8.41V5.58L22.42,12L16,18.41V15.58L19.59,12M1.58,12L8,5.58V8.41L4.41,12L8,15.58V18.41L1.58,12Z" />
-			</svg>
+			<?php if (!empty($logo_url)) { ?>
+				<img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="size-10">
+			<?php } else { ?>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-10 text-amber-400" fill="currentColor" aria-hidden="true" data-slot="icon">
+					<path d="M12.89,3L14.85,3.4L11.11,21L9.15,20.6L12.89,3M19.59,12L16,8.41V5.58L22.42,12L16,18.41V15.58L19.59,12M1.58,12L8,5.58V8.41L4.41,12L8,15.58V18.41L1.58,12Z" />
+				</svg>
+			<?php } ?>
 		</a>
 		<a href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name')); ?>" class="flex items-center">
-			<h1 class="text-2xl font-medium text-amber-400 hover:text-amber-300"><?php esc_html_e('АВАЛОН', 'mt-theme'); ?></h1>
+			<h1 class="text-2xl font-medium text-amber-400"><?php echo esc_html(get_bloginfo('name')); ?></h1>
 		</a>
 		<div class="flex flex-1 items-center mx-6">
 			<div class="flex-1">
