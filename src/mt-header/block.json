@@ -11,16 +11,24 @@
 	"supports": {
 		"html": false
 	},
-	"textdomain": "mt-theme",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
 	"attributes": {
 		"logoUrl": {
 			"type": "string",
 			"default": ""
+		},
+		"profilePage": {
+			"type": "number",
+			"default": 0
+		},
+		"contactPage": {
+			"type": "number",
+			"default": 0
 		}
 	},
+	"textdomain": "mt-theme",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
 	"render": "file:./render.php",
 	"viewScript": "file:./view.js"
 }

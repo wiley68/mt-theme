@@ -6,6 +6,27 @@
 ?>
 <?php
 $logo_url = $attributes['logoUrl'] ?? '';
+
+// Check if WooCommerce is active
+$has_woocommerce = function_exists('is_woocommerce');
+
+// Get profile page URL
+$profile_url = '';
+if (is_user_logged_in() && current_user_can('read')) {
+	if (! empty($attributes['profilePage']) && get_post_status($attributes['profilePage']) === 'publish') {
+		$profile_url = get_permalink($attributes['profilePage']);
+	} elseif ($has_woocommerce) {
+		$profile_url = get_permalink(get_option('woocommerce_myaccount_page_id'));
+	} else {
+		$profile_url = home_url('/profile');
+	}
+}
+
+// Get contact page URL
+$contact_url = '';
+$contact_url = ! empty($attributes['contactPage']) && get_post_status($attributes['contactPage']) === 'publish'
+	? get_permalink($attributes['contactPage'])
+	: home_url('/contact');
 ?>
 <div class="flex flex-col justify-center bg-cyan-600 text-white px-2 py-1 shadow-lg">
 	<div class="flex flex-wrap items-center space-x-3">
@@ -81,7 +102,7 @@ $logo_url = $attributes['logoUrl'] ?? '';
 			<div id="mt-theme-user" class="absolute right-0 z-10 mt-2 min-w-72 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none opacity-0 scale-95" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
 				<?php if (is_user_logged_in()) { ?>
 					<div class="py-1" role="none">
-						<a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+						<a href="<?php echo esc_url($profile_url); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
 							<div class="flex items-center space-x-2" role="none">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5 text-amber-600" fill="currentColor">
 									<path d="M21.7,13.35L20.7,14.35L18.65,12.3L19.65,11.3C19.86,11.09 20.21,11.09 20.42,11.3L21.7,12.58C21.91,12.79 21.91,13.14 21.7,13.35M12,18.94L18.06,12.88L20.11,14.93L14.06,21H12V18.94M12,14C7.58,14 4,15.79 4,18V20H10V18.11L14,14.11C13.34,14.03 12.67,14 12,14M12,4A4,4 0 0,0 8,8A4,4 0 0,0 12,12A4,4 0 0,0 16,8A4,4 0 0,0 12,4Z" />
@@ -92,7 +113,7 @@ $logo_url = $attributes['logoUrl'] ?? '';
 						</a>
 					</div>
 					<div class="py-1" role="none">
-						<div class="px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+						<a href="<?php echo esc_url($contact_url); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
 							<div class="flex items-center space-x-2" role="none">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5 text-amber-600" fill="currentColor">
 									<path d="M22,3H2A2,2 0 0,0 0,5V19A2,2 0 0,0 2,21H22A2,2 0 0,0 24,19V5A2,2 0 0,0 22,3M22,19H2V5H22V19M21,6H14V11H21V6M20,8L17.5,9.75L15,8V7L17.5,8.75L20,7V8M9,12A3,3 0 0,0 12,9A3,3 0 0,0 9,6A3,3 0 0,0 6,9A3,3 0 0,0 9,12M9,8A1,1 0 0,1 10,9A1,1 0 0,1 9,10A1,1 0 0,1 8,9A1,1 0 0,1 9,8M15,16.59C15,14.09 11.03,13 9,13C6.97,13 3,14.09 3,16.59V18H15V16.59M5.5,16C6.22,15.5 7.7,15 9,15C10.3,15 11.77,15.5 12.5,16H5.5Z" />
@@ -100,7 +121,7 @@ $logo_url = $attributes['logoUrl'] ?? '';
 								<p class="text-lg font-medium" role="none"><?php esc_html_e('Contact us', 'mt-theme'); ?></p>
 							</div>
 							<p class="text-xs text-gray-600" role="none"><?php esc_html_e('You would like to receive information. We will answer all your questions', 'mt-theme'); ?></p>
-						</div>
+						</a>
 					</div>
 					<div class="py-1" role="none">
 						<a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="flex items-center space-x-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-gray-900">
@@ -110,45 +131,42 @@ $logo_url = $attributes['logoUrl'] ?? '';
 							<p class="text-lg font-medium"><?php esc_html_e('Exit', 'mt-theme'); ?></p>
 						</a>
 					</div>
-			</div>
-		<?php } else { ?>
-			<div class="py-1" role="none">
-				<div class="py-1" role="none">
-					<a href="<?php echo esc_url(wp_login_url()); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
-						<div class="flex items-center space-x-2" role="none">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5 text-amber-600" fill="currentColor">
-								<path d="M11 7L9.6 8.4L12.2 11H2V13H12.2L9.6 15.6L11 17L16 12L11 7M20 19H12V21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3H12V5H20V19Z" />
-							</svg>
-							<p class="text-lg font-medium" role="none"><?php esc_html_e('Sign in', 'mt-theme'); ?></p>
-						</div>
-						<p class="text-xs text-gray-600" role="none"><?php esc_html_e('View your account and check your order status', 'mt-theme'); ?></p>
-					</a>
-				</div>
-				<div class="py-1" role="none">
-					<a href="<?php echo esc_url(wp_registration_url()); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
-						<div class="flex items-center space-x-2" role="none">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5 text-amber-600" fill="currentColor">
-								<path d="M19,19H5V5H19M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M16.5,16.25C16.5,14.75 13.5,14 12,14C10.5,14 7.5,14.75 7.5,16.25V17H16.5M12,12.25A2.25,2.25 0 0,0 14.25,10A2.25,2.25 0 0,0 12,7.75A2.25,2.25 0 0,0 9.75,10A2.25,2.25 0 0,0 12,12.25Z" />
-							</svg>
-							<p class="text-lg font-medium" role="none"><?php esc_html_e('Create an account', 'mt-theme'); ?></p>
-						</div>
-						<p class="text-xs text-gray-600" role="none"><?php esc_html_e('View your orders, change your address details, etc.', 'mt-theme'); ?></p>
-					</a>
-				</div>
-				<div class="py-1" role="none">
-					<div class="px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
-						<div class="flex items-center space-x-2" role="none">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5 text-amber-600" fill="currentColor">
-								<path d="M22,3H2A2,2 0 0,0 0,5V19A2,2 0 0,0 2,21H22A2,2 0 0,0 24,19V5A2,2 0 0,0 22,3M22,19H2V5H22V19M21,6H14V11H21V6M20,8L17.5,9.75L15,8V7L17.5,8.75L20,7V8M9,12A3,3 0 0,0 12,9A3,3 0 0,0 9,6A3,3 0 0,0 6,9A3,3 0 0,0 9,12M9,8A1,1 0 0,1 10,9A1,1 0 0,1 9,10A1,1 0 0,1 8,9A1,1 0 0,1 9,8M15,16.59C15,14.09 11.03,13 9,13C6.97,13 3,14.09 3,16.59V18H15V16.59M5.5,16C6.22,15.5 7.7,15 9,15C10.3,15 11.77,15.5 12.5,16H5.5Z" />
-							</svg>
-							<p class="text-lg font-medium" role="none"><?php esc_html_e('Contact us', 'mt-theme'); ?></p>
-						</div>
-						<p class="text-xs text-gray-600" role="none"><?php esc_html_e('You would like to receive information. We will answer all your questions', 'mt-theme'); ?></p>
+				<?php } else { ?>
+					<div class="py-1" role="none">
+						<a href="<?php echo esc_url(wp_login_url()); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+							<div class="flex items-center space-x-2" role="none">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5 text-amber-600" fill="currentColor">
+									<path d="M11 7L9.6 8.4L12.2 11H2V13H12.2L9.6 15.6L11 17L16 12L11 7M20 19H12V21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3H12V5H20V19Z" />
+								</svg>
+								<p class="text-lg font-medium" role="none"><?php esc_html_e('Sign in', 'mt-theme'); ?></p>
+							</div>
+							<p class="text-xs text-gray-600" role="none"><?php esc_html_e('View your account and check your order status', 'mt-theme'); ?></p>
+						</a>
 					</div>
-				</div>
+					<div class="py-1" role="none">
+						<a href="<?php echo esc_url(wp_registration_url()); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+							<div class="flex items-center space-x-2" role="none">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5 text-amber-600" fill="currentColor">
+									<path d="M19,19H5V5H19M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M16.5,16.25C16.5,14.75 13.5,14 12,14C10.5,14 7.5,14.75 7.5,16.25V17H16.5M12,12.25A2.25,2.25 0 0,0 14.25,10A2.25,2.25 0 0,0 12,7.75A2.25,2.25 0 0,0 9.75,10A2.25,2.25 0 0,0 12,12.25Z" />
+								</svg>
+								<p class="text-lg font-medium" role="none"><?php esc_html_e('Create an account', 'mt-theme'); ?></p>
+							</div>
+							<p class="text-xs text-gray-600" role="none"><?php esc_html_e('View your orders, change your address details, etc.', 'mt-theme'); ?></p>
+						</a>
+					</div>
+					<div class="py-1" role="none">
+						<a href="<?php echo esc_url($contact_url); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+							<div class="flex items-center space-x-2" role="none">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5 text-amber-600" fill="currentColor">
+									<path d="M22,3H2A2,2 0 0,0 0,5V19A2,2 0 0,0 2,21H22A2,2 0 0,0 24,19V5A2,2 0 0,0 22,3M22,19H2V5H22V19M21,6H14V11H21V6M20,8L17.5,9.75L15,8V7L17.5,8.75L20,7V8M9,12A3,3 0 0,0 12,9A3,3 0 0,0 9,6A3,3 0 0,0 6,9A3,3 0 0,0 9,12M9,8A1,1 0 0,1 10,9A1,1 0 0,1 9,10A1,1 0 0,1 8,9A1,1 0 0,1 9,8M15,16.59C15,14.09 11.03,13 9,13C6.97,13 3,14.09 3,16.59V18H15V16.59M5.5,16C6.22,15.5 7.7,15 9,15C10.3,15 11.77,15.5 12.5,16H5.5Z" />
+								</svg>
+								<p class="text-lg font-medium" role="none"><?php esc_html_e('Contact us', 'mt-theme'); ?></p>
+							</div>
+							<p class="text-xs text-gray-600" role="none"><?php esc_html_e('You would like to receive information. We will answer all your questions', 'mt-theme'); ?></p>
+						</a>
+					</div>
+				<?php } ?>
 			</div>
-		<?php } ?>
 		</div>
 	</div>
-</div>
 </div>

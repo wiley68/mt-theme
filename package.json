@@ -20,6 +20,8 @@
 	},
 	"dependencies": {
 		"@tailwindcss/cli": "^4.1.5",
+		"@wordpress/components": "^29.8.0",
+		"@wordpress/data": "^10.22.0",
 		"tailwindcss": "^4.1.5"
 	}
 }

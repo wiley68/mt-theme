@@ -15,6 +15,7 @@ import {
 	useBlockProps,
 	MediaUpload,
 	MediaUploadCheck,
+	InspectorControls,
 } from "@wordpress/block-editor";
 
 /**
@@ -25,7 +26,8 @@ import {
  */
 import "./editor.scss";
 
-import { Button } from "@wordpress/components";
+import { useSelect } from "@wordpress/data";
+import { Button, PanelBody, SelectControl } from "@wordpress/components";
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -36,7 +38,7 @@ import { Button } from "@wordpress/components";
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { logoUrl } = attributes;
+	const { logoUrl, profilePage, contactPage } = attributes;
 
 	const onSelectImage = (media) => {
 		setAttributes({ logoUrl: media.url });
@@ -46,42 +48,92 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes({ logoUrl: "" });
 	};
 
+	const pages = useSelect((select) => {
+		const allPages = select("core").getEntityRecords("postType", "page", {
+			per_page: -1,
+		});
+		if (!allPages) return [];
+		return allPages.map((page) => ({
+			label: page.title.rendered || `(${page.slug})`,
+			value: page.id,
+		}));
+	}, []);
+
 	return (
 		<div {...useBlockProps()}>
 			<p>{__("Mt Header", "mt-theme")}</p>
 
-			<MediaUploadCheck>
-				<MediaUpload
-					onSelect={onSelectImage}
-					allowedTypes={["image"]}
-					value={logoUrl}
-					render={({ open }) => (
-						<Button onClick={open} isSecondary>
-							{logoUrl
-								? __("Change logo", "mt-theme")
-								: __("Select logo", "mt-theme")}
-						</Button>
-					)}
-				/>
-			</MediaUploadCheck>
+			<InspectorControls>
+				<PanelBody title={__("Logo Settings", "mt-theme")}>
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={onSelectImage}
+							allowedTypes={["image"]}
+							value={logoUrl}
+							render={({ open }) => (
+								<Button onClick={open} isSecondary>
+									{logoUrl
+										? __("Change logo", "mt-theme")
+										: __("Select logo", "mt-theme")}
+								</Button>
+							)}
+						/>
+					</MediaUploadCheck>
 
-			{logoUrl && (
-				<div style={{ marginTop: "10px" }}>
-					<img
-						src={logoUrl}
-						alt={__("Selected logo", "mt-theme")}
-						style={{ maxWidth: "100px" }}
-					/>
-					<Button
-						onClick={removeImage}
-						isLink
-						isDestructive
-						style={{ display: "block", marginTop: "5px" }}
-					>
-						{__("Remove logo", "mt-theme")}
-					</Button>
-				</div>
-			)}
+					{logoUrl && (
+						<div style={{ marginTop: "10px" }}>
+							<img
+								src={logoUrl}
+								alt={__("Selected logo", "mt-theme")}
+								style={{ maxWidth: "100px" }}
+							/>
+							<Button
+								onClick={removeImage}
+								isLink
+								isDestructive
+								style={{ display: "block", marginTop: "5px" }}
+							>
+								{__("Remove logo", "mt-theme")}
+							</Button>
+						</div>
+					)}
+				</PanelBody>
+
+				<PanelBody title={__("User Menu Settings", "mt-theme")}>
+					{pages.length > 0 ? (
+						<>
+							<SelectControl
+								label={__("Profile page", "mt-theme")}
+								value={profilePage}
+								options={[
+									{ label: __("Select a page", "mt-theme"), value: 0 },
+									...pages,
+								]}
+								onChange={(value) =>
+									setAttributes({ profilePage: parseInt(value, 10) })
+								}
+								__next40pxDefaultSize={true}
+								__nextHasNoMarginBottom={true}
+							/>
+							<SelectControl
+								label={__("Contact page", "mt-theme")}
+								value={contactPage}
+								options={[
+									{ label: __("Select a page", "mt-theme"), value: 0 },
+									...pages,
+								]}
+								onChange={(value) =>
+									setAttributes({ contactPage: parseInt(value, 10) })
+								}
+								__next40pxDefaultSize={true}
+								__nextHasNoMarginBottom={true}
+							/>
+						</>
+					) : (
+						<p>{__("Loading pages…", "mt-theme")}</p>
+					)}
+				</PanelBody>
+			</InspectorControls>
 		</div>
 	);
 }
