@@ -29,16 +29,7 @@ $contact_url = ! empty($attributes['contactPage']) && get_post_status($attribute
 	: home_url('/contact');
 
 // Get the current locale and language code
-$locale = get_locale();
-$language_code = substr($locale, 0, 2);
-
-$language_name = 'EN';
-$flag_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" class="size-5" fill="currentColor" aria-hidden="true" data-slot="icon"><path fill="#012169" d="M0 0h640v480H0z" /><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z" /><path fill="#C8102E" d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z" /><path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z" /><path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z" /></svg>';
-
-if ($language_code === 'bg') {
-	$language_name = 'BG';
-	$flag_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" class="size-5" fill="currentColor" aria-hidden="true" data-slot="icon"><path fill="#fff" d="M0 0h640v160H0z" /><path fill="#00966e" d="M0 160h640v160H0z" /><path fill="#d62612" d="M0 320h640v160H0z" /></svg>';
-}
+$lang_data = mt_get_language_switcher_data();
 ?>
 <div class="flex flex-col justify-center bg-cyan-600 text-white px-2 py-1 shadow-lg">
 	<div class="flex flex-wrap items-center space-x-3">
@@ -101,37 +92,27 @@ if ($language_code === 'bg') {
 			<div class="relative">
 				<button id="mt-theme-language-button" type="button" class="grid w-full cursor-pointer grid-cols-1 py-1.5 pl-3 pr-2 text-left text-amber-400 sm:text-sm/6" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
 					<span class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
-						<?php echo $flag_svg; ?>
-						<span class="block truncate"><?php echo esc_html($language_name); ?></span>
+						<?php echo $lang_data['flag']; ?>
+						<span class="block truncate"><?php echo esc_html($lang_data['code']); ?></span>
 					</span>
 					<svg class="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-400 sm:size-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
 						<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 					</svg>
 				</button>
-				<ul id="mt-theme-language" class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm opacity-0 scale-95" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
-					<li class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 hover:text-gray-900 hover:outline-none">
-						<div class="flex items-center">
-							<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-bg" viewBox="0 0 640 480" class="size-5" fill="none">
-								<path fill="#fff" d="M0 0h640v160H0z" />
-								<path fill="#00966e" d="M0 160h640v160H0z" />
-								<path fill="#d62612" d="M0 320h640v160H0z" />
-							</svg>
-							<span class="ml-3 block font-normal">BG</span>
+				<div id="mt-theme-language" class="absolute right-0 z-10 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none opacity-0 scale-95" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+					<?php foreach (mt_get_supported_languages() as $code => $lang_data) {
+						$lang = mt_get_language_switcher_data($code);
+					?>
+						<div class="py-1" role="none">
+							<div data-lang="<?php echo esc_attr($code); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+								<div class="flex items-center space-x-2" role="none">
+									<?php echo $lang['flag']; ?>
+									<span class="block"><?php echo esc_html($lang['code']); ?></span>
+								</div>
+							</div>
 						</div>
-					</li>
-					<li class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 hover:text-gray-900 hover:outline-none">
-						<div class="flex items-center">
-							<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480" class="size-5" fill="none">
-								<path fill="#012169" d="M0 0h640v480H0z" />
-								<path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z" />
-								<path fill="#C8102E" d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z" />
-								<path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z" />
-								<path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z" />
-							</svg>
-							<span class="ml-3 block font-normal">EN</span>
-						</div>
-					</li>
-				</ul>
+					<?php } ?>
+				</div>
 			</div>
 		</div>
 		<div class="relative inline-block text-left">

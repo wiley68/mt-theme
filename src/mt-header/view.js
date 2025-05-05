@@ -237,4 +237,44 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		}
 	});
+
+	const languageOptions = document.querySelectorAll("[data-lang]");
+
+	languageOptions.forEach((el) => {
+		el.addEventListener("click", (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			const selectedLang = el.dataset.lang;
+			console.log("Selected language:", selectedLang);
+			return;
+
+			if (typeof mt_ajax === "undefined") {
+				console.error("mt_ajax not defined.");
+				return;
+			}
+
+			fetch(mt_ajax.ajax_url, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+				},
+				body: new URLSearchParams({
+					action: "mt_set_language",
+					lang: selectedLang,
+					nonce: mt_ajax.nonce,
+				}),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					if (data.success) {
+						location.reload();
+					} else {
+						console.warn("Language switch failed:", data.data);
+					}
+				})
+				.catch((err) => {
+					console.error("AJAX error:", err);
+				});
+		});
+	});
 });

@@ -31,6 +31,17 @@ function mt_theme_enqueue_scripts()
 		filemtime(get_theme_file_path('/assets/css/theme.css')),
 		'all'
 	);
+
+	if (wp_script_is('mt-theme-mt-header-view-script', 'enqueued')) {
+		wp_add_inline_script(
+			'mt-theme-mt-header-view-script',
+			'const mt_ajax = ' . wp_json_encode([
+				'ajax_url' => admin_url('admin-ajax.php'),
+				'nonce' => wp_create_nonce('mt_default_theme_nonce'),
+			]) . ';',
+			'before'
+		);
+	}
 }
 add_action('wp_enqueue_scripts', 'mt_theme_enqueue_scripts');
 
@@ -58,3 +69,81 @@ add_filter('block_categories_all', function ($categories) {
 	];
 	return $categories;
 });
+
+function mt_get_supported_languages()
+{
+	return [
+		'en' => [
+			'code' => 'EN',
+			'name' => 'English',
+			'flag_file' => 'en.svg',
+		],
+		'bg' => [
+			'code' => 'BG',
+			'name' => 'Български',
+			'flag_file' => 'bg.svg',
+		],
+	];
+}
+
+function mt_get_language_switcher_data($lang = null)
+{
+	$locale = get_locale();
+	$current_language_code = substr($locale, 0, 2);
+
+	$languages = mt_get_supported_languages();
+
+	if ($lang && isset($languages[$lang])) {
+		$language_data = $languages[$lang];
+	} else {
+		$language_data = $languages[$current_language_code] ?? $languages['en'];
+	}
+
+	$flag_path = get_template_directory() . '/assets/svg/flags/' . $language_data['flag_file'];
+	$flag_svg = file_exists($flag_path) ? file_get_contents($flag_path) : '';
+
+	return [
+		'code' => $language_data['code'],
+		'name' => $language_data['name'],
+		'flag' => $flag_svg,
+	];
+}
+
+function mt_set_language()
+{
+	check_ajax_referer('mt_default_theme_nonce', 'nonce');
+
+	if (! isset($_POST['lang'])) {
+		wp_send_json_error('No language selected.');
+	}
+
+	$supported_languages = array_keys(mt_get_supported_languages());
+	$selected_lang = sanitize_text_field($_POST['lang']);
+
+	if (in_array($selected_lang, $supported_languages, true)) {
+		setcookie('mt_selected_language', $selected_lang, time() + YEAR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN);
+		wp_send_json_success();
+	} else {
+		wp_send_json_error('Invalid language.');
+	}
+}
+add_action('wp_ajax_mt_set_language', 'mt_set_language');
+add_action('wp_ajax_nopriv_mt_set_language', 'mt_set_language');
+
+function mt_get_cookie_locale($locale)
+{
+	if (isset($_COOKIE['mt_selected_language'])) {
+		$lang = sanitize_text_field($_COOKIE['mt_selected_language']);
+
+		switch ($lang) {
+			case 'bg':
+				return 'bg_BG';
+			case 'en':
+			default:
+				return 'en_US';
+		}
+	}
+
+	return $locale;
+}
+add_filter('locale', 'mt_get_cookie_locale');
