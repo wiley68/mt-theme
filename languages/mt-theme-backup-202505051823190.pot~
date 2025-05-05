@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MT Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-05 18:23+0000\n"
+"POT-Creation-Date: 2025-05-04 12:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Loco-Version: 2.7.2; wp-6.8.1\n"
 "X-Domain: mt-theme"
 
-#: build/mt-header/render.php:140 src/mt-header/render.php:140
+#: build/mt-header/render.php:85 src/mt-header/render.php:85
 msgid "Account settings"
 msgstr ""
 
@@ -44,24 +44,19 @@ msgctxt "block title"
 msgid "Mt Header"
 msgstr ""
 
-#: build/mt-header/render.php:151 build/mt-header/render.php:193
-#: src/mt-header/render.php:151 src/mt-header/render.php:193
+#: build/mt-header/render.php:91 src/mt-header/render.php:91
 msgid "Contact us"
 msgstr ""
 
-#: build/mt-header/render.php:182 src/mt-header/render.php:182
-msgid "Create an account"
-msgstr ""
-
-#: build/mt-header/render.php:161 src/mt-header/render.php:161
+#: build/mt-header/render.php:100 src/mt-header/render.php:100
 msgid "Exit"
 msgstr ""
 
-#: build/mt-header/render.php:123 src/mt-header/render.php:123
+#: build/mt-header/render.php:72 src/mt-header/render.php:72
 msgid "Hello"
 msgstr ""
 
-#: build/mt-header/render.php:125 src/mt-header/render.php:125
+#: build/mt-header/render.php:74 src/mt-header/render.php:74
 msgid "Hello, Guest!"
 msgstr ""
 
@@ -85,33 +80,31 @@ msgstr ""
 msgid "MT Theme"
 msgstr ""
 
-#: build/mt-header/render.php:71 src/mt-header/render.php:71
+#: build/mt-header/render.php:47 src/mt-header/render.php:47
 msgid "Search"
 msgstr ""
 
-#: build/mt-header/render.php:66 src/mt-header/render.php:66
+#: build/mt-header/render.php:42 src/mt-header/render.php:42
 msgid "Search for products"
 msgstr ""
 
-#: build/mt-header/render.php:171 src/mt-header/render.php:171
+#: build/mt-header/render.php:107 src/mt-header/render.php:107
 msgid "Sign in"
 msgstr ""
 
-#: build/mt-header/render.php:77 src/mt-header/render.php:77
+#: build/mt-header/render.php:108 src/mt-header/render.php:108
+msgid "Sign in..."
+msgstr ""
+
+#: build/mt-header/render.php:53 src/mt-header/render.php:53
 msgid "Toggle Dark mode"
 msgstr ""
 
-#: build/mt-header/render.php:173 src/mt-header/render.php:173
-msgid "View your account and check your order status"
-msgstr ""
-
-#: build/mt-header/render.php:142 build/mt-header/render.php:184
-#: src/mt-header/render.php:142 src/mt-header/render.php:184
+#: build/mt-header/render.php:86 src/mt-header/render.php:86
 msgid "View your orders, change your address details, etc."
 msgstr ""
 
-#: build/mt-header/render.php:153 build/mt-header/render.php:195
-#: src/mt-header/render.php:153 src/mt-header/render.php:195
+#: build/mt-header/render.php:92 src/mt-header/render.php:92
 msgid ""
-"You would like to receive information. We will answer all your questions"
+"You would like to receive information. We will answer all your questions."
 msgstr ""

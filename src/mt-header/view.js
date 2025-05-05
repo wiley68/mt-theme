@@ -108,39 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	const userDropDown = document.querySelector("#mt-theme-user");
 	// Toggle on click Account menu
 	if (userDropDownButton) {
-		userDropDownButton.addEventListener("click", () => {
-			if (
-				userDropDown.classList.contains("opacity-0") &&
-				userDropDown.classList.contains("scale-95")
-			) {
-				userDropDown.classList.remove(
-					"opacity-0",
-					"scale-95",
-					"ease-in",
-					"duration-75",
-				);
-				userDropDown.classList.add(
-					"opacity-100",
-					"scale-100",
-					"ease-out",
-					"duration-100",
-				);
-			} else if (
-				userDropDown.classList.contains("opacity-100") &&
-				userDropDown.classList.contains("scale-100")
-			) {
-				userDropDown.classList.remove(
-					"opacity-100",
-					"scale-100",
-					"ease-out",
-					"duration-100",
-				);
-				userDropDown.classList.add(
-					"opacity-0",
-					"scale-95",
-					"ease-in",
-					"duration-75",
-				);
+		userDropDownButton.addEventListener("click", (e) => {
+			e.preventDefault();
+			if (userDropDown.classList.contains("hidden")) {
+				userDropDown.classList.remove("hidden");
+			} else {
+				userDropDown.classList.add("hidden");
 			}
 		});
 	}
@@ -150,39 +123,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	const language = document.querySelector("#mt-theme-language");
 	// Toggle on click Language menu
 	if (languageButton) {
-		languageButton.addEventListener("click", () => {
-			if (
-				language.classList.contains("opacity-0") &&
-				language.classList.contains("scale-95")
-			) {
-				language.classList.remove(
-					"opacity-0",
-					"scale-95",
-					"ease-in",
-					"duration-75",
-				);
-				language.classList.add(
-					"opacity-100",
-					"scale-100",
-					"ease-out",
-					"duration-100",
-				);
-			} else if (
-				language.classList.contains("opacity-100") &&
-				language.classList.contains("scale-100")
-			) {
-				language.classList.remove(
-					"opacity-100",
-					"scale-100",
-					"ease-out",
-					"duration-100",
-				);
-				language.classList.add(
-					"opacity-0",
-					"scale-95",
-					"ease-in",
-					"duration-75",
-				);
+		languageButton.addEventListener("click", (e) => {
+			e.preventDefault();
+			if (language.classList.contains("hidden")) {
+				language.classList.remove("hidden");
+			} else {
+				language.classList.add("hidden");
 			}
 		});
 	}
@@ -196,57 +142,24 @@ document.addEventListener("DOMContentLoaded", () => {
 			!userDropDown.contains(event.target) &&
 			!userDropDownButton.contains(event.target)
 		) {
-			if (
-				userDropDown.classList.contains("opacity-100") &&
-				userDropDown.classList.contains("scale-100")
-			) {
-				userDropDown.classList.remove(
-					"opacity-100",
-					"scale-100",
-					"ease-out",
-					"duration-100",
-				);
-				userDropDown.classList.add(
-					"opacity-0",
-					"scale-95",
-					"ease-in",
-					"duration-75",
-				);
-			}
+			userDropDown.classList.add("hidden");
 		}
 		if (
 			!language.contains(event.target) &&
 			!languageButton.contains(event.target)
 		) {
-			if (
-				language.classList.contains("opacity-100") &&
-				language.classList.contains("scale-100")
-			) {
-				language.classList.remove(
-					"opacity-100",
-					"scale-100",
-					"ease-out",
-					"duration-100",
-				);
-				language.classList.add(
-					"opacity-0",
-					"scale-95",
-					"ease-in",
-					"duration-75",
-				);
-			}
+			language.classList.add("hidden");
 		}
 	});
 
-	const languageOptions = document.querySelectorAll("[data-lang]");
+	const languageOptions = document.getElementsByName(
+		"mt-theme-language-options",
+	);
 
 	languageOptions.forEach((el) => {
 		el.addEventListener("click", (e) => {
 			e.preventDefault();
-			e.stopPropagation();
 			const selectedLang = el.dataset.lang;
-			console.log("Selected language:", selectedLang);
-			return;
 
 			if (typeof mt_ajax === "undefined") {
 				console.error("mt_ajax not defined.");

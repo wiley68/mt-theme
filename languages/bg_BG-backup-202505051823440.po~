@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MT Theme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-04 12:27+0000\n"
-"PO-Revision-Date: 2025-05-04 12:35+0000\n"
+"PO-Revision-Date: 2025-05-04 12:36+0000\n"
 "Last-Translator: Администратор\n"
 "Language-Team: Bulgarian\n"
 "Language: bg_BG\n"
@@ -93,17 +93,17 @@ msgstr "Вход"
 
 #: build/mt-header/render.php:108 src/mt-header/render.php:108
 msgid "Sign in..."
-msgstr ""
+msgstr "Sign in..."
 
 #: build/mt-header/render.php:53 src/mt-header/render.php:53
 msgid "Toggle Dark mode"
-msgstr ""
+msgstr "Превключване на тъмен режим"
 
 #: build/mt-header/render.php:86 src/mt-header/render.php:86
 msgid "View your orders, change your address details, etc."
-msgstr ""
+msgstr "Преглеждайте поръчките си, променяйте адресните си данни и др."
 
 #: build/mt-header/render.php:92 src/mt-header/render.php:92
 msgid ""
 "You would like to receive information. We will answer all your questions."
-msgstr ""
+msgstr "Желаете да получавате информация. Ще отговорим на всички ваши въпроси."

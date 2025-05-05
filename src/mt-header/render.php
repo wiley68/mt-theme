@@ -99,12 +99,12 @@ $lang_data = mt_get_language_switcher_data();
 						<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 					</svg>
 				</button>
-				<div id="mt-theme-language" class="absolute right-0 z-10 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none opacity-0 scale-95" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+				<div id="mt-theme-language" class="absolute right-0 z-10 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hidden">
 					<?php foreach (mt_get_supported_languages() as $code => $lang_data) {
 						$lang = mt_get_language_switcher_data($code);
 					?>
 						<div class="py-1" role="none">
-							<div data-lang="<?php echo esc_attr($code); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
+							<div name="mt-theme-language-options" data-lang="<?php echo esc_attr($code); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">
 								<div class="flex items-center space-x-2" role="none">
 									<?php echo $lang['flag']; ?>
 									<span class="block"><?php echo esc_html($lang['code']); ?></span>
@@ -129,7 +129,7 @@ $lang_data = mt_get_language_switcher_data();
 					</svg>
 				</button>
 			</div>
-			<div id="mt-theme-user" class="absolute right-0 z-10 mt-2 min-w-72 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none opacity-0 scale-95" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+			<div id="mt-theme-user" class="absolute right-0 z-10 mt-2 min-w-72 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hidden" tabindex="-1">
 				<?php if (is_user_logged_in()) { ?>
 					<div class="py-1" role="none">
 						<a href="<?php echo esc_url($profile_url); ?>" class="flex flex-col px-4 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="none">

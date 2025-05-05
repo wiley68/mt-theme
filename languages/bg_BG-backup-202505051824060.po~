@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MT Theme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-04 12:27+0000\n"
-"PO-Revision-Date: 2025-05-04 12:35+0000\n"
+"PO-Revision-Date: 2025-05-05 18:23+0000\n"
 "Last-Translator: Администратор\n"
 "Language-Team: Bulgarian\n"
 "Language: bg_BG\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Loco-Version: 2.7.2; wp-6.8.1\n"
 "X-Domain: mt-theme"
 
-#: build/mt-header/render.php:85 src/mt-header/render.php:85
+#: build/mt-header/render.php:140 src/mt-header/render.php:140
 msgid "Account settings"
 msgstr "Настройки на акаунта"
 
@@ -43,19 +43,24 @@ msgctxt "block title"
 msgid "Mt Header"
 msgstr "Mt Header"
 
-#: build/mt-header/render.php:91 src/mt-header/render.php:91
+#: build/mt-header/render.php:151 build/mt-header/render.php:193
+#: src/mt-header/render.php:151 src/mt-header/render.php:193
 msgid "Contact us"
 msgstr "Контакт"
 
-#: build/mt-header/render.php:100 src/mt-header/render.php:100
+#: build/mt-header/render.php:182 src/mt-header/render.php:182
+msgid "Create an account"
+msgstr "Създай профил"
+
+#: build/mt-header/render.php:161 src/mt-header/render.php:161
 msgid "Exit"
 msgstr "Изход"
 
-#: build/mt-header/render.php:72 src/mt-header/render.php:72
+#: build/mt-header/render.php:123 src/mt-header/render.php:123
 msgid "Hello"
 msgstr "Добре дошли"
 
-#: build/mt-header/render.php:74 src/mt-header/render.php:74
+#: build/mt-header/render.php:125 src/mt-header/render.php:125
 msgid "Hello, Guest!"
 msgstr "Добре дошли, Гост!"
 
@@ -79,31 +84,36 @@ msgstr "Mt Footer"
 msgid "MT Theme"
 msgstr "MT Theme"
 
-#: build/mt-header/render.php:47 src/mt-header/render.php:47
+#: build/mt-header/render.php:71 src/mt-header/render.php:71
 msgid "Search"
 msgstr "Търси"
 
-#: build/mt-header/render.php:42 src/mt-header/render.php:42
+#: build/mt-header/render.php:66 src/mt-header/render.php:66
 msgid "Search for products"
 msgstr "Търси в продуктите"
 
-#: build/mt-header/render.php:107 src/mt-header/render.php:107
+#: build/mt-header/render.php:171 src/mt-header/render.php:171
 msgid "Sign in"
 msgstr "Вход"
 
-#: build/mt-header/render.php:108 src/mt-header/render.php:108
-msgid "Sign in..."
-msgstr ""
-
-#: build/mt-header/render.php:53 src/mt-header/render.php:53
+#: build/mt-header/render.php:77 src/mt-header/render.php:77
 msgid "Toggle Dark mode"
 msgstr "Превключване на тъмен режим"
 
-#: build/mt-header/render.php:86 src/mt-header/render.php:86
-msgid "View your orders, change your address details, etc."
+#: build/mt-header/render.php:173 src/mt-header/render.php:173
+msgid "View your account and check your order status"
 msgstr ""
 
-#: build/mt-header/render.php:92 src/mt-header/render.php:92
+#: build/mt-header/render.php:142 build/mt-header/render.php:184
+#: src/mt-header/render.php:142 src/mt-header/render.php:184
+msgid "View your orders, change your address details, etc."
+msgstr "Преглеждайте поръчките си, променяйте адресните си данни и др."
+
+#: build/mt-header/render.php:153 build/mt-header/render.php:195
+#: src/mt-header/render.php:153 src/mt-header/render.php:195
+#, fuzzy
+#| msgid ""
+#| "You would like to receive information. We will answer all your questions."
 msgid ""
-"You would like to receive information. We will answer all your questions."
-msgstr ""
+"You would like to receive information. We will answer all your questions"
+msgstr "Желаете да получавате информация. Ще отговорим на всички ваши въпроси."
