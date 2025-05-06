@@ -6,7 +6,8 @@
 ?>
 <?php
 $logo_url = $attributes['logoUrl'] ?? '';
-$menu_first_title = $attributes['menuFirstTitle'] ?? '';
+$menu_second_title = $attributes['menuSecondTitle'] ?? '';
+$menu_third_title = $attributes['menuThirdTitle'] ?? '';
 ?>
 <div class="flex flex-col items-center justify-center bg-zinc-700 text-gray-200">
 	<a href="/#top" class="flex items-center justify-center w-full h-10 bg-zinc-600 hover:bg-zinc-500 select-none cursor-pointer drop-shadow-md drop-shadow-zinc-800">
@@ -40,7 +41,7 @@ $menu_first_title = $attributes['menuFirstTitle'] ?? '';
 			<div class="flex-2/5 flex space-x-1 px-2">
 				<div class="flex flex-col flex-1/2">
 					<div class="px-1 mb-2">
-						<?php echo esc_html($menu_first_title); ?>
+						<?php echo esc_html($menu_second_title); ?>
 					</div>
 					<div>
 						<?php
@@ -54,9 +55,18 @@ $menu_first_title = $attributes['menuFirstTitle'] ?? '';
 					</div>
 				</div>
 				<div class="flex flex-col flex-1/2">
-					<div>menu footer 2</div>
+					<div class="px-1 mb-2">
+						<?php echo esc_html($menu_third_title); ?>
+					</div>
 					<div>
-
+						<?php
+						wp_nav_menu([
+							'theme_location' => 'mt-theme-footer-menu-third',
+							'container'      => false,
+							'menu_class'     => 'flex flex-col space-y-0.5 font-medium text-md',
+							'fallback_cb'    => false,
+						]);
+						?>
 					</div>
 				</div>
 			</div>

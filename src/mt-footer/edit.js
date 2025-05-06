@@ -36,7 +36,7 @@ import "./editor.scss";
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { logoUrl, menuFirstTitle } = attributes;
+	const { logoUrl, menuSecondTitle, menuThirdTitle } = attributes;
 
 	const onSelectImage = (media) => {
 		setAttributes({ logoUrl: media.url });
@@ -89,8 +89,13 @@ export default function Edit({ attributes, setAttributes }) {
 				<PanelBody title={__("Footer Menu Settings", "mt-theme")}>
 					<TextControl
 						label={__("Footer Menu Second Title", "mt-theme")}
-						value={menuFirstTitle}
-						onChange={(value) => setAttributes({ menuFirstTitle: value })}
+						value={menuSecondTitle}
+						onChange={(value) => setAttributes({ menuSecondTitle: value })}
+					/>
+					<TextControl
+						label={__("Footer Menu Third Title", "mt-theme")}
+						value={menuThirdTitle}
+						onChange={(value) => setAttributes({ menuThirdTitle: value })}
 					/>
 				</PanelBody>
 			</InspectorControls>

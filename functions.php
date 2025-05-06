@@ -167,6 +167,8 @@ function mt_theme_add_li_class($classes, $item, $args)
 		$classes[] = 'hover:text-amber-400 text-zinc-400 hover:bg-zinc-600 rounded px-1';
 	} elseif ($args->theme_location === 'mt-theme-footer-menu-second') {
 		$classes[] = 'hover:text-amber-400 text-zinc-400 hover:bg-zinc-600 rounded px-1';
+	} elseif ($args->theme_location === 'mt-theme-footer-menu-third') {
+		$classes[] = 'hover:text-amber-400 text-zinc-400 hover:bg-zinc-600 rounded px-1';
 	}
 
 	return $classes;

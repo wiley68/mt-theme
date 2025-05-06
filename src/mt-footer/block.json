@@ -16,7 +16,11 @@
 			"type": "string",
 			"default": ""
 		},
-		"menuFirstTitle": {
+		"menuSecondTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"menuThirdTitle": {
 			"type": "string",
 			"default": ""
 		}
