@@ -31,7 +31,7 @@ $contact_url = ! empty($attributes['contactPage']) && get_post_status($attribute
 // Get the current locale and language code
 $lang_data = mt_get_language_switcher_data();
 ?>
-<div class="flex flex-col justify-center bg-cyan-600 text-white px-2 py-1 shadow-lg">
+<div class="flex flex-col justify-center bg-cyan-600 text-white px-2 py-1 drop-shadow-md drop-shadow-zinc-400">
 	<div class="flex flex-wrap items-center space-x-3">
 		<button type="button" class="rounded-full p-1 text-white shadow-sm border border-gray-400 hover:border-gray-300 cursor-pointer">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-6" fill="currentColor" aria-hidden="true" data-slot="icon">
