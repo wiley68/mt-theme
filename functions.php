@@ -147,3 +147,24 @@ function mt_get_cookie_locale($locale)
 	return $locale;
 }
 add_filter('locale', 'mt_get_cookie_locale');
+
+function mt_theme_nav_config()
+{
+	register_nav_menus([
+		'mt-theme-primary-menu' => __('Primary Menu MT Theme', 'mt-theme'),
+		'mt-theme-footer-menu' => __('Footer Menu MT Theme', 'mt-theme'),
+	]);
+}
+add_action('after_setup_theme', 'mt_theme_nav_config');
+
+function mt_theme_add_li_class($classes, $item, $args)
+{
+	if ($args->theme_location === 'mt-theme-primary-menu') {
+		$classes[] = 'border-1 rounded px-1 border-transparent hover:border-amber-400';
+	} elseif ($args->theme_location === 'mt-theme-footer-menu') {
+		$classes[] = 'mt-theme-footer-menu-item';
+	}
+
+	return $classes;
+}
+add_filter('nav_menu_css_class', 'mt_theme_add_li_class', 1, 3);

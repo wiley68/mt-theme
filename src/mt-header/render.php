@@ -199,4 +199,15 @@ $lang_data = mt_get_language_switcher_data();
 			</div>
 		</div>
 	</div>
+
+	<div class="flex flex-wrap items-center space-x-3 mt-2 mb-1 px-1">
+		<?php
+		wp_nav_menu([
+			'theme_location' => 'mt-theme-primary-menu',
+			'container'      => false,
+			'menu_class'     => 'flex flex-wrap items-center space-x-3 uppercase font-medium text-md',
+			'fallback_cb'    => false,
+		]);
+		?>
+	</div>
 </div>

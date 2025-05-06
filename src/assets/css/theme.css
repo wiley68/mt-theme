@@ -96,7 +96,10 @@ body.body--dark ::-webkit-scrollbar-track {
 }
 
 body .wp-site-blocks {
-	min-height: 911px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	width: 100%;
-	position: relative;
+	min-height: 911px;
+	margin: 0 auto;
 }
