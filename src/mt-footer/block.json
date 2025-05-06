@@ -11,6 +11,12 @@
 	"supports": {
 		"html": false
 	},
+	"attributes": {
+		"logoUrl": {
+			"type": "string",
+			"default": ""
+		}
+	},
 	"textdomain": "mt-theme",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",

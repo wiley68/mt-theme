@@ -11,7 +11,13 @@ import { __ } from "@wordpress/i18n";
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from "@wordpress/block-editor";
+import {
+	useBlockProps,
+	MediaUpload,
+	MediaUploadCheck,
+	InspectorControls,
+} from "@wordpress/block-editor";
+import { Button, PanelBody } from "@wordpress/components";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,6 +35,57 @@ import "./editor.scss";
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
-	return <p {...useBlockProps()}>{__("Mt Footer", "mt-theme")}</p>;
+export default function Edit({ attributes, setAttributes }) {
+	const { logoUrl } = attributes;
+
+	const onSelectImage = (media) => {
+		setAttributes({ logoUrl: media.url });
+	};
+
+	const removeImage = () => {
+		setAttributes({ logoUrl: "" });
+	};
+
+	return (
+		<div {...useBlockProps()}>
+			<p>{__("Mt Footer", "mt-theme")}</p>
+
+			<InspectorControls>
+				<PanelBody title={__("Logo Settings", "mt-theme")}>
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={onSelectImage}
+							allowedTypes={["image"]}
+							value={logoUrl}
+							render={({ open }) => (
+								<Button onClick={open} isSecondary>
+									{logoUrl
+										? __("Change logo", "mt-theme")
+										: __("Select logo", "mt-theme")}
+								</Button>
+							)}
+						/>
+					</MediaUploadCheck>
+
+					{logoUrl && (
+						<div style={{ marginTop: "10px" }}>
+							<img
+								src={logoUrl}
+								alt={__("Selected logo", "mt-theme")}
+								style={{ maxWidth: "100px" }}
+							/>
+							<Button
+								onClick={removeImage}
+								isLink
+								isDestructive
+								style={{ display: "block", marginTop: "5px" }}
+							>
+								{__("Remove logo", "mt-theme")}
+							</Button>
+						</div>
+					)}
+				</PanelBody>
+			</InspectorControls>
+		</div>
+	);
 }
