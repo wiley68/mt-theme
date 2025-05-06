@@ -6,6 +6,7 @@
 ?>
 <?php
 $logo_url = $attributes['logoUrl'] ?? '';
+$menu_first_title = $attributes['menuFirstTitle'] ?? '';
 ?>
 <div class="flex flex-col items-center justify-center bg-zinc-700 text-gray-200">
 	<a href="/#top" class="flex items-center justify-center w-full h-10 bg-zinc-600 hover:bg-zinc-500 select-none cursor-pointer drop-shadow-md drop-shadow-zinc-800">
@@ -13,8 +14,8 @@ $logo_url = $attributes['logoUrl'] ?? '';
 	</a>
 	<div class="flex flex-col items-center w-full max-w-6xl p-4">
 		<div class="flex justify-center w-full flex-1">
-			<div class="flex-1/5 flex flex-col text-sm text-zinc-400">
-				<a href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name')); ?>" class="flex items-center">
+			<div class="flex-1/5 flex flex-col text-zinc-400 px-2">
+				<a href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name')); ?>" class="flex items-center px-1">
 					<?php if (!empty($logo_url)) { ?>
 						<img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="size-10">
 					<?php } else { ?>
@@ -23,16 +24,40 @@ $logo_url = $attributes['logoUrl'] ?? '';
 						</svg>
 					<?php } ?>
 				</a>
-				<p><?php echo esc_html(get_bloginfo('description')); ?></p>
+				<p class="px-1 mb-2 text-sm "><?php echo esc_html(get_bloginfo('description')); ?></p>
+				<div class="w-full h-1 border-b border-zinc-600 mb-1 px-1"></div>
+				<div>
+					<?php
+					wp_nav_menu([
+						'theme_location' => 'mt-theme-footer-menu-first',
+						'container'      => false,
+						'menu_class'     => 'flex flex-col space-y-0.5 font-medium text-md',
+						'fallback_cb'    => false,
+					]);
+					?>
+				</div>
 			</div>
-			<div class="flex-2/5 flex">
+			<div class="flex-2/5 flex space-x-1 px-2">
 				<div class="flex flex-col flex-1/2">
-					<div>menu footer 1</div>
-					<div></div>
+					<div class="px-1 mb-2">
+						<?php echo esc_html($menu_first_title); ?>
+					</div>
+					<div>
+						<?php
+						wp_nav_menu([
+							'theme_location' => 'mt-theme-footer-menu-second',
+							'container'      => false,
+							'menu_class'     => 'flex flex-col space-y-0.5 font-medium text-md',
+							'fallback_cb'    => false,
+						]);
+						?>
+					</div>
 				</div>
 				<div class="flex flex-col flex-1/2">
 					<div>menu footer 2</div>
-					<div></div>
+					<div>
+
+					</div>
 				</div>
 			</div>
 			<div class="flex-2/5">3 kolona w dqsno</div>

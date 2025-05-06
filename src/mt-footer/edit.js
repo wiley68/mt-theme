@@ -17,7 +17,7 @@ import {
 	MediaUploadCheck,
 	InspectorControls,
 } from "@wordpress/block-editor";
-import { Button, PanelBody } from "@wordpress/components";
+import { Button, PanelBody, TextControl } from "@wordpress/components";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -36,7 +36,7 @@ import "./editor.scss";
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { logoUrl } = attributes;
+	const { logoUrl, menuFirstTitle } = attributes;
 
 	const onSelectImage = (media) => {
 		setAttributes({ logoUrl: media.url });
@@ -84,6 +84,14 @@ export default function Edit({ attributes, setAttributes }) {
 							</Button>
 						</div>
 					)}
+				</PanelBody>
+
+				<PanelBody title={__("Footer Menu Settings", "mt-theme")}>
+					<TextControl
+						label={__("Footer Menu Second Title", "mt-theme")}
+						value={menuFirstTitle}
+						onChange={(value) => setAttributes({ menuFirstTitle: value })}
+					/>
 				</PanelBody>
 			</InspectorControls>
 		</div>

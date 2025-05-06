@@ -15,6 +15,10 @@
 		"logoUrl": {
 			"type": "string",
 			"default": ""
+		},
+		"menuFirstTitle": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"textdomain": "mt-theme",

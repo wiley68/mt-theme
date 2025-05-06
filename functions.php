@@ -152,7 +152,9 @@ function mt_theme_nav_config()
 {
 	register_nav_menus([
 		'mt-theme-primary-menu' => __('Primary Menu MT Theme', 'mt-theme'),
-		'mt-theme-footer-menu' => __('Footer Menu MT Theme', 'mt-theme'),
+		'mt-theme-footer-menu-first' => __('Footer Menu First MT Theme', 'mt-theme'),
+		'mt-theme-footer-menu-second' => __('Footer Menu Second MT Theme', 'mt-theme'),
+		'mt-theme-footer-menu-third' => __('Footer Menu Third MT Theme', 'mt-theme'),
 	]);
 }
 add_action('after_setup_theme', 'mt_theme_nav_config');
@@ -161,8 +163,10 @@ function mt_theme_add_li_class($classes, $item, $args)
 {
 	if ($args->theme_location === 'mt-theme-primary-menu') {
 		$classes[] = 'border-1 rounded px-1 border-transparent hover:border-amber-400';
-	} elseif ($args->theme_location === 'mt-theme-footer-menu') {
-		$classes[] = 'mt-theme-footer-menu-item';
+	} elseif ($args->theme_location === 'mt-theme-footer-menu-first') {
+		$classes[] = 'hover:text-amber-400 text-zinc-400 hover:bg-zinc-600 rounded px-1';
+	} elseif ($args->theme_location === 'mt-theme-footer-menu-second') {
+		$classes[] = 'hover:text-amber-400 text-zinc-400 hover:bg-zinc-600 rounded px-1';
 	}
 
 	return $classes;
